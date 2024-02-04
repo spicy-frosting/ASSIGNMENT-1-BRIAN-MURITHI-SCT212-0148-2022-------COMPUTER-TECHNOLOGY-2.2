@@ -1,0 +1,143 @@
+QUIZ 1 ASSIGNMENT
+
+QUESTION 1
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int removeDuplicates(vector<int>& nums) {
+   
+    if (nums.empty()) {
+        return 0;
+    }
+    
+    // using the pointers
+    int i = 0; // The first pointer to iterate over the array
+    int j = 0; // The second pointer to keep track of the unique elements
+    
+    // initializing the  array
+    while (i < nums.size()) {
+        
+        if (nums[i] != nums[j]) {
+           
+            j++;
+            nums[j] = nums[i];
+        }
+        // push first pointer forward
+        i++;
+    }
+    
+    return j + 1;
+}
+
+int main() {
+    vector<int> nums = {1, 1, 2, 3, 3, 4, 5, 5};
+    int len = removeDuplicates(nums);
+    cout << "The new length is: " << len << endl;
+    cout << "The modified array is: ";
+    for (int i = 0; i < len; i++) {
+        cout << nums[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+QUESTION 2
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+void reverse(vector<int>& nums, int start, int end) {
+    while (start < end) {
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+void rotate(vector<int>& nums, int k) {
+    // Check if the array is empty or k is zero
+    if (nums.empty() || k == 0) {
+        return;
+    }
+    k = k % nums.size();
+    
+    reverse(nums, 0, nums.size() - 1);
+    
+    reverse(nums, 0, k - 1);
+    
+    reverse(nums, k, nums.size() - 1);
+}
+
+int main() {
+    // Test the array
+    vector<int> nums = {1, 2, 3, 4, 5, 6, 7};
+    int k = 3;
+    rotate(nums, k);
+    cout << "The rotated array is: ";
+    for (int i = 0; i < nums.size(); i++) {
+        cout << nums[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+QUESTION 3
+#include <iostream>
+#include <unordered_set>
+#include <vector>
+using namespace std;
+
+bool containsDuplicate(vector<int>& nums) {
+    // Check if the array is empty
+    if (nums.empty()) {
+        return false;
+    }
+        unordered_set<int> seen;
+    
+    // Loop
+    for (int num : nums) {
+        if (seen.count(num) > 0) {
+            return true;
+        }
+        seen.insert(num);
+    }
+    
+    return false;
+}
+
+int main() {
+    vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 1};
+    bool result = containsDuplicate(nums);
+    cout << "The result is: " << result << endl;
+    return 0;
+}
+
+QUESTION 4
+
+#include <stdio.h>
+
+int singleNumber(int nums[], int n) {
+    // Initialize the result to 0
+    int result = 0;
+    
+    // Loop the array
+    for (int i = 0; i < n; i++) {
+        result = result ^ nums[i];
+    }
+    
+    // Return the result
+    return result;
+}
+
+int main() {
+    int nums[] = {2, 2, 1, 4, 1};
+    int n = sizeof(nums) / sizeof(nums[0]);
+    int single = singleNumber(nums, n);
+    printf("The single element is: %d\n", single);
+    return 0;
+}
+
