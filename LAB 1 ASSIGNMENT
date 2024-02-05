@@ -246,3 +246,18 @@ int main() {
 
 
  TASK 4
+               USER PROGRAMES
+                     |
+                   uses
+                     | 
+                     |
+                list (ADT)
+                 {insert()
+                  remove()
+                  find()}
+                  /   \ 
+                 /     \
+          implements    implements     
+             /            \
+           /               \
+      array              linked list
